@@ -21,7 +21,6 @@
         android:id="@+id/top_memes_fragment"
         android:title="@string/top_memes_title"/>
     <item
-        android:id="@+id/make_memes_fragment"
+        android:id="@+id/create_memes_fragment"
         android:title="@string/make_memes_title"/>
-
 </menu>

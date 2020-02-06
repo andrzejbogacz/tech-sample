@@ -9,6 +9,12 @@
         android:id="@+id/top_memes_fragment"
         android:name="com.example.lionheartassignment.TopMemesFragment"
         android:label="@string/memes_title"
-        tools:layout="@layout/fragment_memes"/>
+        tools:layout="@layout/fragment_top_memes"/>
+
+    <fragment
+        android:id="@+id/create_memes_fragment"
+        android:name="com.example.lionheartassignment.CreateMemesFragment"
+        android:label="@string/make_memes_title"
+        tools:layout="@layout/fragment_create_memes"/>
 
 </navigation>

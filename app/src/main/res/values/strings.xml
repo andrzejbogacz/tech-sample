@@ -6,4 +6,5 @@
     <string name="memes_title" translation_description="Title for the 'Top Memes' screen where the user can see the list of best memes">Top Memes</string>
     <string name="top_memes_title">Top memes</string>
     <string name="make_memes_title">Make memes</string>
+    <string name="create_memes_title">CREATE MEMES</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.example.lionheartassignment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -24,7 +24,7 @@ class MemesActivity : AppCompatActivity() {
 
 
 
-        navController = findNavController(R.id.garden_nav_fragment)
+        navController = findNavController(R.id.memes_nav_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawer_layout)
 
         // Set up ActionBar
