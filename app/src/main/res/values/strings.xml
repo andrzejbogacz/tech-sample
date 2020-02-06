@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">lionheartassignment</string>
+
+    <string name="navigation_drawer_header_title" translatable="false">Meme Paradise</string>
+    <string name="navigation_drawer_header_content_description" translation_description="Content description for the image that is shown at the top of the navigation drawer.">Navigation drawer header logo</string>
+    <string name="memes_title" translation_description="Title for the 'Top Memes' screen where the user can see the list of best memes">Top Memes</string>
+    <string name="top_memes_title">Top memes</string>
+    <string name="make_memes_title">Make memes</string>
 </resources>
