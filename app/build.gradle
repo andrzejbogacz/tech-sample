@@ -41,6 +41,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    implementation deps.misc.volley
+    implementation deps.misc.gson
+
+
     //SUPPORT
     implementation deps.support.app_compat
     implementation deps.support.core_ktx
