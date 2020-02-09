@@ -43,7 +43,8 @@ dependencies {
 
     implementation deps.misc.volley
     implementation deps.misc.gson
-
+    implementation deps.misc.glide
+    kapt deps.misc.glide_compiler
 
     //SUPPORT
     implementation deps.support.app_compat

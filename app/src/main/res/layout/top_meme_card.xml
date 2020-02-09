@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/thumbnail"
+                android:paddingLeft="@dimen/meme_title_padding"
+                android:paddingRight="@dimen/meme_title_padding"
+                android:paddingTop="@dimen/meme_title_padding"
+                android:textColor="#000000"
+                android:textSize="@dimen/meme_title" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:paddingBottom="@dimen/count_padding_bottom"
+                android:visibility="invisible"
+                android:paddingLeft="@dimen/meme_title_padding"
+                android:paddingRight="@dimen/meme_title_padding"
+                android:textSize="@dimen/meme_count" />
+
+            <ImageView
+                android:id="@+id/overflow"
+                android:layout_width="@dimen/ic_meme_overflow_width"
+                android:layout_height="@dimen/ic_meme_overflow_height"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:layout_below="@id/thumbnail"
+                android:layout_marginTop="@dimen/ic_meme_overflow_margin_top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_more_vert_black_24dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
