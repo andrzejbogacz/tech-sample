@@ -1,4 +1,4 @@
-package com.example.lionheartassignment.dto
+package com.example.lionheartassignment.remote.models
 
 
 import com.google.gson.annotations.SerializedName
@@ -15,8 +15,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class JsonBase (
+data class Data (
 
-	@SerializedName("success") val success : Boolean,
-	@SerializedName("data") val data : Data
+	@SerializedName("memes") val memes : List<Memes>
 )

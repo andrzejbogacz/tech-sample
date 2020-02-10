@@ -1,4 +1,4 @@
-package com.example.lionheartassignment
+package com.example.lionheartassignment.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -13,14 +13,15 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.lionheartassignment.dto.JsonBase
-import com.example.lionheartassignment.dto.Memes
-import com.example.lionheartassignment.network.HttpConstants
+import com.example.lionheartassignment.adapters.BlankMemesAdapter
+import com.example.lionheartassignment.R
+import com.example.lionheartassignment.remote.models.JsonBase
+import com.example.lionheartassignment.remote.models.Memes
+import com.example.lionheartassignment.remote.HttpConstants
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_create_memes.*
-import kotlinx.android.synthetic.main.fragment_top_memes.*
 
-class CreateMemesFragment : Fragment() {
+class MemeTemplatesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

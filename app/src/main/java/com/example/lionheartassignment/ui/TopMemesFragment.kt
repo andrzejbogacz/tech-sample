@@ -14,27 +14,15 @@
  * limitations under the License.
  */
 
-package com.example.lionheartassignment
+package com.example.lionheartassignment.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.example.lionheartassignment.dto.JsonBase
-import com.example.lionheartassignment.dto.Memes
-import com.example.lionheartassignment.network.HttpConstants
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_top_memes.*
-
+import com.example.lionheartassignment.R
 
 class TopMemesFragment : Fragment() {
 
@@ -51,9 +39,8 @@ class TopMemesFragment : Fragment() {
         return view
     }
 
-
     private fun getTopMemes() {
-        //TODO implement downloading list of top voted memes
+        //TODO implement downloading list of top voted memes, unfortunetely this site doesn't provide API for downloading mostly voted images.
 
     }
 

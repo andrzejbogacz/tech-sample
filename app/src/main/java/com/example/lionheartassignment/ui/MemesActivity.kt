@@ -1,4 +1,4 @@
-package com.example.lionheartassignment
+package com.example.lionheartassignment.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.lionheartassignment.R
 import kotlinx.android.synthetic.main.activity_memes.*
 
 class MemesActivity : AppCompatActivity() {
