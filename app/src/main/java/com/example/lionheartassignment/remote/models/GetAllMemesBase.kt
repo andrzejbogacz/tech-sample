@@ -1,7 +1,6 @@
 package com.example.lionheartassignment.remote.models
 
 
-import com.example.lionheartassignment.remote.models.Data
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -16,8 +15,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class JsonBase (
+data class GetAllMemesBase(
 
-	@SerializedName("success") val success : Boolean,
-	@SerializedName("data") val data : Data
-)
+    @SerializedName("success") val success: Boolean,
+    @SerializedName("data") val data: Data
+) {
+    inner class Data(
+
+        @SerializedName("memes") val memes: List<Memes>
+    )
+}
