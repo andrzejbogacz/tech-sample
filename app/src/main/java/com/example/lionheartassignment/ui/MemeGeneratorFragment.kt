@@ -17,15 +17,11 @@
 package com.example.lionheartassignment.ui
 
 import MemeGeneratorResponse
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
@@ -40,8 +36,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_meme_generator.*
 import kotlinx.android.synthetic.main.fragment_meme_generator.view.*
 
-
-open class MemeGeneratorFragment : Fragment() {
+class MemeGeneratorFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +56,7 @@ open class MemeGeneratorFragment : Fragment() {
 
             sendGenerateMemePostRequest(view, text1, text2, meme.id.toString())
         }
+
         return view
     }
 
@@ -70,7 +66,6 @@ open class MemeGeneratorFragment : Fragment() {
     ) {
         Glide.with(context!!).load(meme.url).into(view.iv_generator_thumbnail)
         view.title.text = meme.name
-        view.overflow.setOnClickListener { showPopupMenu(view) }
     }
 
 
@@ -127,35 +122,5 @@ open class MemeGeneratorFragment : Fragment() {
         VolleySingleton.requestQueue.add(sr)
 
     }
-
-    /**
-     * Showing popup menu when tapping on 3 dots
-     */
-
-    open fun showPopupMenu(view: View) { // inflate menu
-        val popup = PopupMenu(view.context, view)
-        popup.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_share -> {
-                    val imageViewUriPath = view.iv_generator_thumbnail.tag.toString()
-                    val uriPath = Uri.parse(imageViewUriPath)
-
-                    val intent = Intent(Intent.ACTION_SEND)
-                    intent.type = "image/jpeg"
-                    intent.putExtra(Intent.EXTRA_STREAM, uriPath)
-
-                    startActivity(Intent.createChooser(intent, "Share images to.."))
-
-                    true
-                }
-
-                else -> true
-            }
-        }
-        val inflater: MenuInflater = popup.menuInflater
-        inflater.inflate(R.menu.menu_overflow_meme, popup.menu)
-        popup.show()
-    }
-
 
 }
