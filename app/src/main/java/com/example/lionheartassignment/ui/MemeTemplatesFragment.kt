@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.lionheartassignment.R
 import com.example.lionheartassignment.adapters.BlankMemesAdapter
 import com.example.lionheartassignment.remote.HttpConstants
-import com.example.lionheartassignment.remote.models.JsonBase
+import com.example.lionheartassignment.remote.VolleySingleton
+import com.example.lionheartassignment.remote.models.GetAllMemesBase
 import com.example.lionheartassignment.remote.models.Memes
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_create_memes.*
@@ -42,13 +42,13 @@ class MemeTemplatesFragment : Fragment() {
             HttpConstants.GET_MEMES_BASE_URL,
             Response.Listener { response ->
 
-                val memesModel = Gson().fromJson(response, JsonBase::class.java)
+                val memesModel = Gson().fromJson(response, GetAllMemesBase::class.java)
 
                 val memeList = memesModel.data.memes
                 val sortedMemeList = sortDoubleBoxes(memeList)
 
                 for (item: Memes in memeList) {
-                    Log.d("TAG", item.name)
+                    Log.d("TAG", "${item.name} ${item.box_count}")
                 }
 
                 recycler_view_create_meme.layoutManager = LinearLayoutManager(
@@ -68,9 +68,10 @@ class MemeTemplatesFragment : Fragment() {
 
             })
 
-        Volley.newRequestQueue(context).add(request)
+        VolleySingleton.requestQueue.add(request)
     }
 
+    // sorting for double boxed memes only
     private fun sortDoubleBoxes(memeList: List<Memes>): List<Memes> {
         val mListOfMemes: MutableList<Memes> = mutableListOf()
         for (item: Memes in memeList) {
@@ -83,5 +84,4 @@ class MemeTemplatesFragment : Fragment() {
     private fun loadToast(content: String?) {
         Toast.makeText(context, content, Toast.LENGTH_SHORT).show()
     }
-
 }

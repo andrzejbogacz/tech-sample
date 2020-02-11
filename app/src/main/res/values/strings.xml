@@ -8,5 +8,11 @@
     <string name="make_memes_title">Make memes</string>
     <string name="create_memes_title">create memes</string>
     <string name="action_add_favourite">Add as favourite</string>
+    <string name="action_share">Share meme</string>
     <string name="template_title">Template Title:</string>
+    <string name="api_not_available">This API doesn\'t share endpoints for retrieving top voted images but similar GET request is also presented in Make meme section in menu</string>
+    <string name="share_me_with">Share me with...</string>
+    <string name="text_on_top_hint">Text on top</string>
+    <string name="text_on_bottom_hint">Text on bottom</string>
+    <string name="generate_text">Generate</string>
 </resources>

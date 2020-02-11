@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_generator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <View
                 android:id="@+id/view_separator"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
-                android:hint="Text on top"
+                android:hint="@string/text_on_top_hint"
                 android:inputType="textPersonName"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="@+id/title"
@@ -50,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:tag="@string/share_me_with"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
@@ -78,11 +79,13 @@
                 android:layout_height="@dimen/ic_meme_overflow_height"
                 android:layout_below="@id/iv_generator_thumbnail"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_more_vert_black_24dp"
-                android:visibility="invisible"
+                android:visibility="visible"
                 card_view:layout_constraintEnd_toEndOf="@+id/title"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                card_view:layout_constraintTop_toBottomOf="@+id/iv_generator_thumbnail" />
 
             <EditText
                 android:id="@+id/et_text2"
@@ -90,19 +93,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
-                android:hint="Text on bottom"
+                android:hint="@string/text_on_bottom_hint"
                 android:inputType="textPersonName"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="@+id/et_text1"
                 card_view:layout_constraintTop_toBottomOf="@+id/et_text1" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_generate_meme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:text="Generate"
+                android:text="@string/generate_text"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="@+id/view_separator"
                 card_view:layout_constraintHorizontal_bias="0.501"

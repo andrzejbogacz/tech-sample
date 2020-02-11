@@ -1,6 +1,3 @@
-package com.example.lionheartassignment.remote.models
-
-
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -15,7 +12,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Data (
+data class MemeGeneratorResponse(
 
-	@SerializedName("memes") val memes : List<Memes>
-)
+    @SerializedName("success") val success: Boolean,
+    @SerializedName("data") val data: Data
+) {
+    inner class Data(
+        @SerializedName("url") val url: String,
+        @SerializedName("page_url") val page_url: String
+    )
+
+}
+
+

@@ -16,18 +16,32 @@
 
 package com.example.lionheartassignment.ui
 
+import MemeGeneratorResponse
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import com.android.volley.AuthFailureError
+import com.android.volley.Response
+import com.android.volley.VolleyLog
+import com.android.volley.toolbox.StringRequest
 import com.bumptech.glide.Glide
 import com.example.lionheartassignment.R
+import com.example.lionheartassignment.remote.HttpConstants
+import com.example.lionheartassignment.remote.VolleySingleton
 import com.example.lionheartassignment.remote.models.Memes
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_meme_generator.*
 import kotlinx.android.synthetic.main.fragment_meme_generator.view.*
 
 
-class MemeGeneratorFragment : Fragment() {
+open class MemeGeneratorFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +55,12 @@ class MemeGeneratorFragment : Fragment() {
 
         loadMeme(meme, view)
 
+        view.btn_generate_meme.setOnClickListener {
+            val text1: String = et_text1.text.toString().trim()
+            val text2: String = et_text2.text.toString().trim()
+
+            sendGenerateMemePostRequest(view, text1, text2, meme.id.toString())
+        }
         return view
     }
 
@@ -50,11 +70,91 @@ class MemeGeneratorFragment : Fragment() {
     ) {
         Glide.with(context!!).load(meme.url).into(view.iv_generator_thumbnail)
         view.title.text = meme.name
+        view.overflow.setOnClickListener { showPopupMenu(view) }
     }
 
 
-    private fun loadMemeTemplate(url: String?, text1: String? = null, text2: String? = null) {
-        //todo load generated template
+    private fun sendGenerateMemePostRequest(
+        view: View,
+        text1: String = " ",
+        text2: String = " ",
+        templateID: String
+    ) {
+
+        val sr: StringRequest = object : StringRequest(
+            Method.POST,
+            HttpConstants.POST_CAPTION_IMAGE_URL,
+            Response.Listener { response ->
+
+                val myData = Gson().fromJson<MemeGeneratorResponse>(
+                    response,
+                    MemeGeneratorResponse::class.java
+                )
+
+                // if text boxes are not null -> update the image
+                myData?.data?.url?.run {
+                    Glide.with(context!!).load(myData.data.url).into(view.iv_generator_thumbnail)
+                }
+
+            },
+            Response.ErrorListener { error ->
+                VolleyLog.d("TAG", "Error: " + error.message)
+                Log.d("TAG", "" + error.message + "," + error.toString())
+
+            }) {
+
+            // input parameters for post request
+            override fun getParams(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["template_id"] = templateID
+                params["username"] = "andi1000"
+                params["password"] = "andi1000"
+                params["text0"] = text1
+                params["text1"] = text2
+                return params
+            }
+
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers: MutableMap<String, String> =
+                    HashMap()
+                headers["Content-Type"] = "application/x-www-form-urlencoded"
+                headers["abc"] = "value"
+                return headers
+            }
+        }
+
+        VolleySingleton.requestQueue.add(sr)
+
+    }
+
+    /**
+     * Showing popup menu when tapping on 3 dots
+     */
+
+    open fun showPopupMenu(view: View) { // inflate menu
+        val popup = PopupMenu(view.context, view)
+        popup.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_share -> {
+                    val imageViewUriPath = view.iv_generator_thumbnail.tag.toString()
+                    val uriPath = Uri.parse(imageViewUriPath)
+
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.type = "image/jpeg"
+                    intent.putExtra(Intent.EXTRA_STREAM, uriPath)
+
+                    startActivity(Intent.createChooser(intent, "Share images to.."))
+
+                    true
+                }
+
+                else -> true
+            }
+        }
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.menu_overflow_meme, popup.menu)
+        popup.show()
     }
 
 

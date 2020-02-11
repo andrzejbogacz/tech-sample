@@ -4,13 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@+id/top_memes_fragment">
-
-    <fragment
-        android:id="@+id/top_memes_fragment"
-        android:name="com.example.lionheartassignment.ui.TopMemesFragment"
-        android:label="@string/memes_title"
-        tools:layout="@layout/fragment_top_memes"/>
-
     <fragment
         android:id="@+id/create_memes_fragment"
         android:name="com.example.lionheartassignment.ui.MemeTemplatesFragment"
@@ -20,6 +13,13 @@
             android:id="@+id/action_create_memes_fragment_to_memeGeneratorFragment"
             app:destination="@id/meme_generator_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/top_memes_fragment"
+        android:name="com.example.lionheartassignment.ui.TopMemesFragment"
+        android:label="@string/memes_title"
+        tools:layout="@layout/fragment_top_memes" />
+
+
     <fragment
         android:id="@+id/meme_generator_fragment"
         android:name="com.example.lionheartassignment.ui.MemeGeneratorFragment"
