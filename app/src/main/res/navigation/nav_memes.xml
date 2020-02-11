@@ -7,14 +7,26 @@
 
     <fragment
         android:id="@+id/top_memes_fragment"
-        android:name="com.example.lionheartassignment.TopMemesFragment"
+        android:name="com.example.lionheartassignment.ui.TopMemesFragment"
         android:label="@string/memes_title"
         tools:layout="@layout/fragment_top_memes"/>
 
     <fragment
         android:id="@+id/create_memes_fragment"
-        android:name="com.example.lionheartassignment.CreateMemesFragment"
+        android:name="com.example.lionheartassignment.ui.MemeTemplatesFragment"
         android:label="@string/make_memes_title"
-        tools:layout="@layout/fragment_create_memes"/>
+        tools:layout="@layout/fragment_create_memes">
+        <action
+            android:id="@+id/action_create_memes_fragment_to_memeGeneratorFragment"
+            app:destination="@id/meme_generator_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/meme_generator_fragment"
+        android:name="com.example.lionheartassignment.ui.MemeGeneratorFragment"
+        android:label="meme_generator_fragment">
+        <argument
+            android:name="memeChosenTemplate"
+            app:argType="com.example.lionheartassignment.remote.models.Memes" />
+    </fragment>
 
 </navigation>

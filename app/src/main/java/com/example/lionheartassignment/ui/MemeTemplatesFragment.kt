@@ -13,11 +13,11 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.lionheartassignment.adapters.BlankMemesAdapter
 import com.example.lionheartassignment.R
+import com.example.lionheartassignment.adapters.BlankMemesAdapter
+import com.example.lionheartassignment.remote.HttpConstants
 import com.example.lionheartassignment.remote.models.JsonBase
 import com.example.lionheartassignment.remote.models.Memes
-import com.example.lionheartassignment.remote.HttpConstants
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_create_memes.*
 
@@ -37,28 +37,47 @@ class MemeTemplatesFragment : Fragment() {
     }
 
     private fun getMemeTemplates() {
-        val request = StringRequest(Request.Method.GET, HttpConstants.BASE_URL,  Response.Listener { response ->
+        val request = StringRequest(
+            Request.Method.GET,
+            HttpConstants.GET_MEMES_BASE_URL,
+            Response.Listener { response ->
 
-            var memesModel = Gson().fromJson(response, JsonBase::class.java)
+                val memesModel = Gson().fromJson(response, JsonBase::class.java)
 
-            var movieList = memesModel.data.memes
+                val memeList = memesModel.data.memes
+                val sortedMemeList = sortDoubleBoxes(memeList)
 
-            for (item: Memes in movieList) {
-                Log.d("TAG", item.name)
-            }
+                for (item: Memes in memeList) {
+                    Log.d("TAG", item.name)
+                }
 
-            recycler_view_create_meme.layoutManager= LinearLayoutManager(context,
-                LinearLayout.VERTICAL,false)
+                recycler_view_create_meme.layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayout.VERTICAL, false
+                )
 
-            recycler_view_create_meme.adapter = BlankMemesAdapter(movieList,context!!)
+                recycler_view_create_meme.adapter =
+                    BlankMemesAdapter(
+                        sortedMemeList,
+                        context!!
+                    )
 
-        }, Response.ErrorListener { error ->
-            loadToast(error.message)
-            Log.d("TAG", error.message!!)
+            }, Response.ErrorListener { error ->
+                loadToast(error.message)
+                Log.d("TAG", error.message!!)
 
-        })
-        //
+            })
+
         Volley.newRequestQueue(context).add(request)
+    }
+
+    private fun sortDoubleBoxes(memeList: List<Memes>): List<Memes> {
+        val mListOfMemes: MutableList<Memes> = mutableListOf()
+        for (item: Memes in memeList) {
+            if (item.box_count == 2)
+                mListOfMemes.add(item)
+        }
+        return mListOfMemes
     }
 
     private fun loadToast(content: String?) {
